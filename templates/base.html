@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bytemarket</title>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  </head>
+
+  <body>
+  <div class="header">
+    <div class="container">
+         <div class="navbar">
+         <div class="logo">
+          <a href="/"> <img src="{% static 'images/logo.jpg' %}" width="125px" /></a>
+         </div>
+         <nav>
+          <ul id="MenuItems">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li class="dropdown">
+              <a class="active" onclick="toggleDropdown(event)">Products <i class="fas fa-caret-down"></i></a>
+              <ul id="inneritems" style="display: none;">
+                <li><a href="{% url 'fashion-child-product' %}">Child Clothes</a></li>
+                <li><a href="{% url 'laptop-product' %}">Laptops</a></li>
+                <li><a href="{% url 'footwear-product' %}">Footwear</a></li>
+                <li><a href="{% url 'gift-product' %}">Gift</a></li>
+                <li><a href="{% url 'phone-product' %}">Phone</a></li>
+                <li><a href="{% url 'toys-product' %}">Toys</a></li>
+              </ul>
+            </li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'account' %}">Account</a></li>
+          </ul>
+        </nav>
+         <a href="{% url 'cart' %}"><img src="{% static 'images/cart.png' %}" width="30px" height="30px"></a>
+         {% block content %}
+
+         {% endblock %}
+
+          <!-- -------footer------ -->
+         <footer class="footer">
+          <div class="container-f">
+            <div class="row-f">
+              <div class="footer-col">
+                <h4>online shop</h4>
+                <ul>
+                  <li><a href="{% url 'toys-product' %}">Toys</a></li>
+                  <li><a href="{% url 'fashion-child-product' %}">Fashion</a></li>
+                  <li><a href="{% url 'footwear-product' %}">Footwear</a></li>
+                  <li><a href="{% url 'phone-product' %}">Phone</a></li>
+                  <li><a href="{% url 'gift-product' %}">Gift & frams</a></li>
+                  <li><a href="{% url 'laptop-product' %}">Laptops</a></li>
+                  <li><a href="#">Beauty and Personal care</a></li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>get help</h4>
+                <ul>
+                  <li><a href="#">FAQ</a></li>
+                  <li><a href="#">shipping</a></li>
+                  <li><a href="#">returns</a></li>
+                  <li><a href="#">order status</a></li>
+                  <li><a href="#">payment options</a></li>
+                </ul>
+              </div> 
+                <div class="footer-col">
+                  <h4>company</h4>
+                  <ul>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    <li><a href="{% url 'account' %}">Account</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                  </ul>
+                </div>
+                <div class="footer-col">
+                  <h4>follow us</h4>
+                  <div class="social-links">
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+              </div>
+            </div>
+              <hr><div class="copyright text-center">
+                <h5><a href="#">🌐</a> copyright © 2023 Bytemarket.com all rights reserved</h5>
+
+                <br><small>♥ built by <a href="https://www.linkedin.com/" target="_blank">Joel Inyang</a>-</small>
+              </div>
+            </div>  
+       </footer>
+
+<script>
+  /*
+  function menutoggle() {
+    var inneritems = document.getElementById("inneritems");
+    if (inneritems.style.display === "none") {
+        inneritems.style.display = "block";
+    } else {
+        inneritems.style.display = "none";
+    }
+}*/
+function toggleDropdown(event) {
+  event.preventDefault();
+  var dropdown = event.target.nextElementSibling;
+  dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+}
+</script>

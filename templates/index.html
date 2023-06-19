@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content  %}
+  
+    
+          <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+        </div>
+        <div class="row">
+          <div class="col-2">
+            <h1>
+              Here shopping becomes <br/>simple!
+            </h1>
+            <p>
+              "We trust something in a grocery store and assume it's good. We don't learn about the most precious thing in life—
+              <br/>the food we put in our body. Educate yourself!"
+            </p>
+            <a href="" class="btn">Explore Now &#10140;</a>
+          </div>
+          <div class="col-2">
+             <img src="{% static 'images/ecommerce pic.jpg' %}" alt=""  style="height: 350px; width: 600px;"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- ---------featured categories--------   -->
+<div class="small-container">
+  <h2 class="title">Categories</h2>
+  <div class="row">
+    <div class="col-4">
+      <a href="{% url 'fashion-child-product' %}" target="_blank"><img src="{% static 'images/clothes/cc5.jpg' %}" alt="" style="height: 150px; width: 150px;"></a>
+      <a href="{% url 'fashion-child-product' %}" target="_blank"><h4>Clothes</h4></a>
+      <a href="{% url 'fashion-child-product' %}" target="_blank"><p>explore more..</p></a>    
+    </div>
+    <div class="col-4">
+      <a href="{% url 'gift-product' %}"target="_blank"><img src="{% static 'images/gift/G4.jpg' %}" alt="" style="height: 150px; width: 150px;"></a>
+      <a href="{% url 'gift-product' %}"target="_blank"><h4>Gift</h4></a>
+      <a href="{% url 'gift-product' %}"target="_blank"><p>explore more..</p></a>
+      
+    </div>
+    <div class="col-4">
+      <a href="{% url 'toys-product' %}"target="_blank"><img src="{% static 'images/toys/T2.jpg' %}" alt="" style="height: 150px; width: 150px;"></a>
+      <a href="{% url 'toys-product' %}"target="_blank"><h4>Toys</h4></a>
+      <a href="{% url 'toys-product' %}"target="_blank"><p>explore more..</p></a>
+    </div>
+    <div class="col-4">
+      <a href="{% url 'footwear-product' %}"target="_blank"><img src="{% static 'images/footwears/F2.jpg' %}" alt="" style="height: 150px; width: 150px;"></a>
+      <a href="{% url 'footwear-product' %}"target="_blank"><h4>Footwear</h4></a>
+      <a href="{% url 'footwear-product' %}"target="_blank"><p>explore more..</p></a>
+    </div>
+
+
+    <div class="col-4">
+      <a href="{% url 'laptop-product' %}"target="_blank"><img src="{% static 'images/laptops/L4.jpg' %}" alt="" style="height: 150px; width: 150px;"></a>
+      <a href="{% url 'laptop-product' %}"target="_blank"><h4>Laptops</h4></a>
+      <a href="{% url 'laptop-product' %}"target="_blank"><p>explore more..</p></a>
+    </div>
+
+    <div class="col-4">
+      <a href="{% url 'phone-product' %}"target="_blank"><img src="{% static 'images/phones/P3.jpg' %}" alt="" style="height: 150px; width: 150px;"></a>
+      <a href="{% url 'phone-product' %}"target="_blank"><h4>Phones</h4></a>
+      <a href="{% url 'phone-product' %}"target="_blank"><p>explore more..</p></a>
+    </div>
+  </div>
+  <!-- ---------featured products--------   -->
+  <h2 class="title">Featured Products</h2>
+  <div class="row">
+    {% for product in products %}
+    <div class="col-4">
+      <img src="{{ product.images.url }}" alt="" style="height: 150px; width: 200px;" >
+      <h4><a href="product-detial-child1.html" target="_blank">{{ product.product_name }}</a></h4>
+      <p>${{product.price}}</p>
+    </div>
+    {% endfor %}
+    <!--<div class="col-4">
+      <img src="images/clothes/child clothes/cloth2.jpg" alt="">
+      <h4><a href="product-detials-child2.html" target="_blank">Lehnga</a></h4>
+      <p>500rs.</p>
+    </div>
+    <div class="col-4">
+      <img src="images/clothes/saree/lehnga (6).jpg" alt="">
+      <h4><a href="product-detials-saree.html" target="_blank">lancha/lehnga</a></h4>
+      <p>600rs.</p>
+    </div>
+    <div class="col-4">
+      <img src="images/gifts/fram1.png" alt="">
+      <h4><a href="product-detials-gift.html" target="_blank">Frame Gift</a></h4>
+      <p>210rs.</p>
+    </div>
+    <div class="col-4">
+      <img src="images/Toys/toy1.png" alt="">
+      <h4><a href="product-detials-toy.html" target="_blank">Truck</a></h4>
+      <p>85rs.</p>
+    </div>
+    <div class="col-4">
+      <img src="images/footware/foot1.jpg" alt="">
+      <h4><a href="product-detials-shoes.html" target="_blank">Boys Sports Shoes</a></h4>
+      <p>265rs.</p>
+    </div>
+    <div class="col-4">
+      <img src="images/electronic/speaker4.jpg" alt="">
+      <h4><a href="product-detials-speaker.html" target="_blank">Wireless Bluetooth Speakers</a></h4>
+      <p> 340rs. </a></p>
+    </div>
+    <div class="col-4">
+      <img src="images/electronic/sound1.png" alt="">
+      <h4><a href="product-detials-sound.html" target="_blank">Desk Speaker</a></h4>
+      <p> 240rs. </p>
+    </div>-->
+  </div>
+ 
+<!-- -----offer------ -->
+<div class="offer">
+<div class="small-container">
+  <div class="row">
+    <div class="col-2">
+<img src="{% static 'images/laptops/L5.jpg' %}" class="offer-img">
+    </div>
+    <div class="col-2">
+<p>Exclusively Available On <b>Bytemarket</b></p>
+<h1>Macbook</h1>
+<small>Macbook with Wireless Portable Bluetooth Speakers kt-125 with Mobile Holder, with USB, Memory Card and Bluetooth Connectivity (Kt-125)</small><br>
+<a href="{% url 'laptop-product' %}" target="_blank" class="btn">Buy Now &#10140</a>
+    </div>
+  </div>
+</div>
+</div>
+<!-- ------testimonial------ -->
+<div class="testimonial">
+  <p><h2>Customer's Reviews</h2></p>
+       <div class="small-container">
+       <div class="row">
+         <div class="col-3">
+           <p>"We are treat the customer as god. Sales are good due to low profit business, customers are satisfied with us because of the price."</p>
+           <img src="{% static 'images/Sam.jpg' %}" alt="" style="height: 50px; width: 50px;">
+           <h3>
+            Values And Beliefs</h3>
+          </div>
+          <div class="col-3">
+            <p>"We are treat the customer as god. Sales are good due to low profit business, customers are satisfied with us because of the price."</p>
+            <img src="{% static 'images/Mia.jpg' %}" alt="" style="height: 50px; width: 50px;" >
+            <h3>
+              Build A Connection</h3>
+           </div>
+           <div class="col-3">
+            <p>"We are treat the customer as god. Sales are good due to low profit business, customers are satisfied with us because of the price."
+            </p>
+            <img src="{% static 'images/Leo.jpg' %}" alt="" style="height: 50px; width: 50px;" >
+            <h3>
+              Certifications, Awards</h3>
+           </div>
+         </div>
+       </div>
+      </div>
+      <!-- -------brands------ -->
+      <div class="brands">
+        <div class="small-container">
+          <div class="row">
+            <div class="col-5">
+              <img src="{% static 'images/godrej.jpg' %}">
+            </div>
+            <div class="col-5">
+              <img src="{% static 'images/oppo.png' %}">
+            </div>
+            <div class="col-5">
+              <img src="{% static 'images/paypal.png' %}">
+            </div>
+            <div class="col-5">
+              <img src="{% static 'images/philips.png' %}">
+            </div>
+            <div class="col-5">
+              <img src="{% static 'images/pampers.png' %}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- -------footer------ -->
+      
+     <!-- -------js for toggle menu----- -->
+     <script>
+       var MenuItems = document.getElementById("MenuItems");
+       var MenuItem = document.getElementById("inneritems");
+       MenuItems.style.maxHeight = "0px";
+
+       function menutoggle(){
+         if(MenuItems.style.maxHeight == "0px")
+         {
+          MenuItems.style.maxHeight = "200px";
+         }
+         else
+         {
+          MenuItems.style.maxHeight = "0px";
+         }
+        
+       }
+       function menutoggl(){
+         if(MenuItem.style.display == "block")
+         {
+          MenuItem.style.display = "none";
+         }
+         else
+         {
+          MenuItem.style.display = "block";
+         }
+        
+       }
+     </script>
+  </body>
+</html>
+{% endblock %}

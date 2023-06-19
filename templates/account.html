@@ -1,0 +1,330 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content  %}
+
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+  </head>
+  <body>
+      <div class="container">
+        <div class="navbar">
+          <div class="logo">
+            <a href="index.html"> <img src="images/logo.png" width="125px" /></a>
+           </div>
+           <nav>
+            <ul id="MenuItems">
+              <li><a href="index.html">Home</a></li>
+             <li class="dropdown" onclick=" menutoggl()"><a class="active">Products
+                <i class="fas fa-caret-down"></i>
+              </a>
+                <ul id="inneritems">
+                <li><a href="fashion-child-product.html">Child Clothes</a></li>
+                <li><a href="fashion-saree-product.html">Saree</a></li>
+                <li><a href="footwear-product.html">Footwear</a></li>
+                <li><a href="gift-product.html">Gift</a></li>
+                <li><a href="electronics-product.html">Electronics</a></li>
+                <li><a href="toys-product.html">Toys</a></li>
+                </ul>
+              </li>
+               <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="account.html">Account</a></li>
+            </ul>
+          </nav>-->
+           <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+         </div>
+      </div>
+<!-- --------account-page------ -->
+<div class="account-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img src="{% static 'images/image1.jpg' %}" width="100%">
+            </div>
+            {% if not user.is_authenticated %}
+            <div class="col-2">
+                <div class="form-container">
+                   <div class="form-btn">
+                       <span onclick="login()">Login</span>
+                       <span onclick="register()">Sign up</span>
+                       <hr id="Indicator">
+                   </div> 
+                   <form id="LoginForm" action="/signin" method="POST" >
+                    {% csrf_token %}
+                       <input type="text" name="username" placeholder="Username">
+                       <input type="Password"  name="password" placeholder="Password">
+                       <button type="submit" class="btn">Login</button>
+                       <a href="">Forgot Password</a>
+                   </form>
+                   <form id="RegForm" action="/signup" method="POST">
+                    {% csrf_token %}
+                      <input type="text" name="username" placeholder="Username">
+                      <input type="email" name="email" placeholder="Email">
+                      <input type="Password" name="password" placeholder="Password">
+                      <input type="Password" name="password2" placeholder="Confirm Password">
+                      <button type="submit" class="btn">Sign up</button>
+                </form>
+                </div>
+            {% else %}
+                <div class="container m-auto"> 
+
+                  <h1 class="text-2xl leading-none text-gray-900 tracking-tight mt-3" > <a href="/">Home</a>  / Account Setting for <b>{{user.username}}</b> </h1>
+                  <!--<ul class="mt-5 -mr-3 flex-nowrap lg:overflow-hidden overflow-x-scroll uk-tab">
+                      <li class="uk-active"><a href="#">General</a></li>
+                      <li><a href="#">Profile</a></li>
+                      <li><a href="#">Privacy</a></li>
+                      <li><a href="#">Notification</a></li>
+                      <li><a href="#">Social links</a></li>
+                      <li><a href="#">Billing</a></li>
+                      <li><a href="#">Security</a></li>
+                  </ul>-->
+  
+                  <div class="grid lg:grid-cols-3 mt-12 gap-8">
+                      <!--<div>
+                          <h3 class="text-xl mb-2"> Basic</h3>
+                          <p></p>
+                      </div>-->
+                      <div class="bg-white rounded-md lg:shadow-lg shadow col-span-2">
+      
+                      <form action="" method="POST" enctype="multipart/form-data">
+                          {% csrf_token %}
+                         <div class="grid grid-cols-2 gap-3 lg:p-6 p-4">
+                             <!--<div>
+                                 <label for=""> Full Name</label>
+                                 <input type="text" placeholder="Your name.." class="shadow-none bg-gray-100">
+                             </div>
+                             <div>
+                                 <label for=""> Last name</label>
+                                 <input type="text" placeholder="Your name.." class="shadow-none bg-gray-100">
+                              </div>-->
+  
+                              <div>
+                                  <label for=""> Profile Image</label>
+                                  <img width="100" height="100" src="{{ profile.img.url }}" alt="">
+                                  <input type="file" name="image" value="" class="shadow-none bg-gray-100">
+                               </div>
+  
+  
+  
+                              <div class="col-span-2">
+                                  <label for=""> Email</label>
+                                  <input type="text" placeholder="Your email" value="{{user.email}}" class="shadow-none bg-gray-100">
+                              </div>
+                              <!--<div class="col-span-2">
+                                  <label for="about">Bio</label>  
+                                  <textarea id="bio" name="bio" rows="3"  class="shadow-none bg-gray-100">{{user_profile.bio}}</textarea>
+                              </div>--> 
+                              <div class="col-span-2">
+                                  <label for=""> Location</label>
+                                  <input type="text" name="location" value="{{user_profile.location}}" class="shadow-none bg-gray-100">
+                              </div>
+                             <!-- <div>
+                                 <label for=""> Working at</label>
+                                 <input type="text" placeholder="" class="shadow-none bg-gray-100">
+                              </div> 
+                              <div>
+                                 <label for=""> Relationship </label>
+                                 <select id="relationship" name="relationship"  class="shadow-none bg-gray-100">
+                                  <option value="0">None</option>
+                                  <option value="1">Single</option>
+                                  <option value="2">In a relationship</option>
+                                  <option value="3">Married</option>
+                                  <option value="4">Engaged</option>
+                                </select>
+                              </div>-->
+                         </div> 
+                      
+                         <div class="bg-gray-10 p-6 pt-0 flex justify-end space-x-3">
+                             <button class="p-2 px-4 rounded bg-gray-50 text-red-500" class="btn" > <a href="/">Cancel</a></button>
+                             <button type="submit" class="button bg-blue-700"> Save </button>
+                         </div>
+      
+                      </form>
+                      </div>
+  
+                      <!--<div>
+                          <h3 class="text-xl mb-2"> Privacy</h3>
+                          <p> </p>
+                      </div>
+                      <div class="bg-white rounded-md lg:shadow-lg shadow lg:p-6 p-4 col-span-2">
+  
+                      <div class="space-y-3">
+                          <div class="flex justify-between items-center">
+                              <div>
+                                  <h4> Who can follow me ?</h4>
+                                  <div>  </div>
+                              </div>
+                              <div class="switches-list -mt-8 is-large">
+                                  <div class="switch-container">
+                                      <label class="switch"><input type="checkbox"><span class="switch-button"></span> </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="flex justify-between items-center">
+                              <div>
+                                  <h4> Show my activities ?</h4>
+                                  <div>  </div>
+                              </div>
+                              <div class="switches-list -mt-8 is-large">
+                                  <div class="switch-container">
+                                      <label class="switch"><input type="checkbox" checked><span class="switch-button"></span> </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="flex justify-between items-center">
+                              <div>
+                                  <h4> Search engines?</h4>
+                                  <div>  </div>
+                              </div>
+                              <div class="switches-list -mt-8 is-large">
+                                  <div class="switch-container">
+                                      <label class="switch"><input type="checkbox"><span class="switch-button"></span> </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <hr>
+                          <div class="flex justify-between items-center">
+                              <div>
+                                  <h4> Allow Commenting?</h4>
+                                  <div>  </div>
+                              </div>
+                              <div class="switches-list -mt-8 is-large">
+                                  <div class="switch-container">
+                                      <label class="switch"><input type="checkbox"><span class="switch-button"></span> </label>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+      
+                      </div>-->
+                      <br>
+  
+                  </div>
+  
+              </div>
+
+
+              <button><a href="/logout">Logout</a></button>
+            {% endif %}
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+      <!-- -------footer------ 
+      <footer class="footer">
+        <div class="container-f">
+          <div class="row-f">
+            <div class="footer-col">
+              <h4>online shop</h4>
+              <ul>
+                <li><a href="#">Grocery</a></li>
+                <li><a href="#">Toys</a></li>
+                <li><a href="#">Fashion</a></li>
+                <li><a href="#">Footwear</a></li>
+                <li><a href="#">Electronics</a></li>
+                <li><a href="#">Beauty and Personal care</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>get help</h4>
+              <ul>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">shipping</a></li>
+                <li><a href="#">returns</a></li>
+                <li><a href="#">order status</a></li>
+                <li><a href="#">payment options</a></li>
+              </ul>
+            </div> 
+              <div class="footer-col">
+                <h4>company</h4>
+                <ul>
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Contact Us</a></li>
+                  <li><a href="#">Our Services</a></li>
+                  <li><a href="#">Privacy Policy</a></li>
+                </ul>
+              </div>
+              <div class="footer-col">
+                <h4>follow us</h4>
+                <div class="social-links">
+                  <a href="#"><i class="fab fa-whatsapp"></i></a>
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+          </div>
+            <hr><div class="copyright text-center">
+              <h5><a href="#">🌐</a> copyright © 2022 SiyaShop.com all rights reserved</h5>
+              <br><small>♥ built by <a href="https://www.linkedin.com/in/shubham-choudhary-shubh/" target="_blank">Shubham Choudhary</a>-</small>
+            </div>
+          </div>  
+     </footer>-->
+     <!-- -------js for toggle menu----- -->
+     <script>
+  var MenuItems = document.getElementById("MenuItems");
+  var MenuItem = document.getElementById("inneritems");
+  MenuItems.style.maxHeight = "0px";
+
+  function menutoggle(){
+    if(MenuItems.style.maxHeight == "0px")
+    {
+     MenuItems.style.maxHeight = "200px";
+    }
+    else
+    {
+     MenuItems.style.maxHeight = "0px";
+    }
+   
+  }
+  function menutoggl(){
+    if(MenuItem.style.display == "block")
+    {
+     MenuItem.style.display = "none";
+    }
+    else
+    {
+     MenuItem.style.display = "block";
+    }
+   
+  }
+     </script>
+<!-- --------js form toggle form------- -->
+
+<script>
+var LoginForm = document.getElementById("LoginForm");
+var RegForm = document.getElementById("RegForm");
+var Indicator = document.getElementById("Indicator");
+function register(){
+RegForm.style.transform = "translateX(0px)";
+LoginForm.style.transform = "translateX(0px)";
+Indicator.style.transform = "translateX(100px)";
+}
+function login(){
+RegForm.style.transform = "translateX(300px)";
+LoginForm.style.transform = "translateX(300px)";
+Indicator.style.transform = "translateX(0px)";
+}
+</script>
+  </body>
+</html>
+{% endblock %}
